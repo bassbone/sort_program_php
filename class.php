@@ -182,7 +182,7 @@ class QuickSort implements Algorithm {
         }
         $this->swap($list[$bottom], $list[$upper]);
 
-        $this->sort_sub($bottom, $upper -1, $list);
+        $this->sort_sub($bottom, $upper - 1, $list);
         $this->sort_sub($upper + 1, $top, $list);
     }
 }
