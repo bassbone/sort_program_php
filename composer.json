@@ -1,0 +1,15 @@
+{
+    "name": "root/sort_program_php",
+    "authors": [
+        {
+            "name": "bassbone",
+            "email": "bassbone0o_o0@yahoo.co.jp"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "myapp\\": "src/"
+        }
+    }
+}
