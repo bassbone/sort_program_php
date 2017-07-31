@@ -4,7 +4,7 @@ require_once('class.php');
 
 ini_set('memory_limit', '1024M');
 
-const LENGTH = 1000;
+const LENGTH = 10000;
 
 $sort = new Sort(new BubbleSort(), LENGTH);
 $sort = new Sort(new SelectionSort(), LENGTH);

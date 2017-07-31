@@ -166,26 +166,20 @@ class QuickSort implements Algorithm {
             return;
         }
 
-        //先頭の値を「適当な値」とする
         $div = $list[$bottom];
 
-        //$data[$bottom]番目より大きい値を後ろに持っていく
         for ($lower = $bottom, $upper = $top; $lower < $upper;) {
-            //$lower番目の値が適当に選択した値以下の限り
             while ($lower <= $upper && $list[$lower] <= $div) {
-                $lower++; //最終的な$lowerの値は$divよりも大きい値の配列番号になる
+                $lower++;
             }
-            //$upper番目の値が適当に選択した値より大きい限り
             while ($lower <= $upper && $list[$upper] > $div) {
-                $upper--;//最終的な$lowerの値は$divよりも小さい値の配列番号になる
+                $upper--;
             }
-            //もし$divより大きな値が、$divより小さい値よりも前に有った場合、順番を入れ替える
             if ($lower < $upper) {
                 $this->swap($list[$lower], $list[$upper]);
             }
 
         }
-        //最初に選択した値を中央に移動
         $this->swap($list[$bottom], $list[$upper]);
 
         $this->sort_sub($bottom, $upper -1, $list);
