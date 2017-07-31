@@ -20,7 +20,7 @@ class Sort{
         $this->debug_mode && print(implode(',', $this->list).PHP_EOL);
 
         $time = microtime(true) - $time_start;
-        echo "{$time} 秒".PHP_EOL;
+        echo get_class($sort).sprintf(':%.5f 秒', $time).PHP_EOL;
     }
 
     private function init_list() {
@@ -149,6 +149,47 @@ class MergeSort implements Algorithm {
             }
         }
 	return $arr;
+    }
+}
+
+class QuickSort implements Algorithm {
+
+    use Util;
+
+    public function sort(array $list) : array {
+        $this->sort_sub(0, count($list) - 1, $list);
+        return $list;
+    }
+
+    private function sort_sub(int $bottom = 0, int $top, array &$list) {
+        if ($bottom >= $top) {
+            return;
+        }
+
+        //先頭の値を「適当な値」とする
+        $div = $list[$bottom];
+
+        //$data[$bottom]番目より大きい値を後ろに持っていく
+        for ($lower = $bottom, $upper = $top; $lower < $upper;) {
+            //$lower番目の値が適当に選択した値以下の限り
+            while ($lower <= $upper && $list[$lower] <= $div) {
+                $lower++; //最終的な$lowerの値は$divよりも大きい値の配列番号になる
+            }
+            //$upper番目の値が適当に選択した値より大きい限り
+            while ($lower <= $upper && $list[$upper] > $div) {
+                $upper--;//最終的な$lowerの値は$divよりも小さい値の配列番号になる
+            }
+            //もし$divより大きな値が、$divより小さい値よりも前に有った場合、順番を入れ替える
+            if ($lower < $upper) {
+                $this->swap($list[$lower], $list[$upper]);
+            }
+
+        }
+        //最初に選択した値を中央に移動
+        $this->swap($list[$bottom], $list[$upper]);
+
+        $this->sort_sub($bottom, $upper -1, $list);
+        $this->sort_sub($upper + 1, $top, $list);
     }
 }
 
