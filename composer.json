@@ -6,7 +6,9 @@
             "email": "bassbone0o_o0@yahoo.co.jp"
         }
     ],
-    "require": {},
+    "require": {
+        "lox/xhprof": "dev-master"
+    },
     "autoload": {
         "psr-4": {
             "myapp\\": "src/"
